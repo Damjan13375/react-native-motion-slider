@@ -348,10 +348,9 @@ class Slider extends Component {
           Style.valueContainer,
           {
             left,
-            transform: [
-              { scale: animScale },
-              this.props.vertical && { rotate: "-90deg" },
-            ],
+            transform: this.props.vertical
+              ? [{ scale: animScale }, { rotate: "-90deg" }]
+              : [{ scale: animScale }],
           },
         ]}
       >
