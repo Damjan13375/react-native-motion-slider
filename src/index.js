@@ -348,7 +348,10 @@ class Slider extends Component {
           Style.valueContainer,
           {
             left,
-            transform: [{ scale: animScale }, vertical && { rotate: "-90deg" }],
+            transform: [
+              { scale: animScale },
+              this.props.vertical && { rotate: "-90deg" },
+            ],
           },
         ]}
       >
@@ -385,7 +388,7 @@ class Slider extends Component {
     return (
       <View
         style={
-          vertical && {
+          this.props.vertical && {
             transform: [{ rotate: "90deg" }],
           }
         }
@@ -398,14 +401,14 @@ class Slider extends Component {
             style={[
               Style.min,
               this.minStyle,
-              vertical && { transform: [{ rotate: "-90deg" }] },
+              this.props.vertical && { transform: [{ rotate: "-90deg" }] },
             ]}
           >{`${min.toFixed(decimalPlaces)}${units}`}</Text>
           <Text
             style={[
               Style.max,
               this.maxStyle,
-              vertical && { transform: [{ rotate: "-90deg" }] },
+              this.props.vertical && { transform: [{ rotate: "-90deg" }] },
             ]}
           >{`${max.toFixed(decimalPlaces)}${units}`}</Text>
           {this.renderValue()}
