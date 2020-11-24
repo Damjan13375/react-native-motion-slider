@@ -41,6 +41,7 @@ class Slider extends Component {
     onPressIn: () => null,
     onPressOut: () => null,
     onDrag: () => null,
+    vertical: false,
   };
 
   constructor(props) {
@@ -64,6 +65,7 @@ class Slider extends Component {
       fontSize,
       fontFamily,
       fontWeight,
+      vertical,
     } = props;
 
     this.titleStyle = {
@@ -346,7 +348,7 @@ class Slider extends Component {
           Style.valueContainer,
           {
             left,
-            transform: [{ scale: animScale }, { rotate: "-90deg" }],
+            transform: [{ scale: animScale }, vertical && { rotate: "-90deg" }],
           },
         ]}
       >
@@ -382,9 +384,11 @@ class Slider extends Component {
 
     return (
       <View
-        style={{
-          transform: [{ rotate: "90deg" }],
-        }}
+        style={
+          vertical && {
+            transform: [{ rotate: "90deg" }],
+          }
+        }
       >
         {this.renderTitle()}
         <Animated.View
@@ -394,14 +398,14 @@ class Slider extends Component {
             style={[
               Style.min,
               this.minStyle,
-              { transform: [{ rotate: "-90deg" }] },
+              vertical && { transform: [{ rotate: "-90deg" }] },
             ]}
           >{`${min.toFixed(decimalPlaces)}${units}`}</Text>
           <Text
             style={[
               Style.max,
               this.maxStyle,
-              { transform: [{ rotate: "-90deg" }] },
+              vertical && { transform: [{ rotate: "-90deg" }] },
             ]}
           >{`${max.toFixed(decimalPlaces)}${units}`}</Text>
           {this.renderValue()}
